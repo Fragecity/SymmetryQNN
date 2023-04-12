@@ -5,8 +5,11 @@ import pickle, typing, copy
 
 #%% generate data
 def a_data_with_label() -> tuple:
+    '''case1: 2-dim data aside the line y = -x'''
+    # generate x1, x2 in [-1, 1] uniformly, then to range [-0.9*pi, 0.9*pi]
     two_dim_data = (np.random.rand(2) *2 - 1) * np.pi * 0.9
     two_dim_data.requires_grad = False
+     # label = 1 if x1 + x2 > 0 else 0, which is the line y = -x
     label = two_dim_data[0] + two_dim_data[1] > 0 
     return two_dim_data, label
 
@@ -15,8 +18,9 @@ def generate_data(data_num: int) -> list:
 
 #%% polynomial encoding
 
-Vector = typing.List[float]
+Vector = typing.List[float] # used to indicate data type
 def encoded_data_set(data_num):
+    '''Used when parallel encoding and num_parallel = 3'''
     datas = []
     for x, label in generate_data(data_num):
         data = np.append(x,x)
@@ -57,28 +61,39 @@ def mat_in_set(A, Group) -> bool:
 def equal(A,B) -> bool:
     B = np.abs(A-B) < 1e-6
     return B.all()
+
 #%% Symmetry
 class Symmetry():
-    
+    '''
+    Symmetry Interface
+    Ps: deployed symmetry group and the global observable
+    Ms: exact methods for cc symmetry guidance for given specific symmetry and ob.
+    '''
     def __init__(self) -> None:
         self.group = []
         self.observable = 0
 
     def _twirling(self, O_tilde):
+        '''twirling O_tilde'''
         SOS_list = [Adjoint(S, O_tilde) for S in self.group ]
         return 1/len(SOS_list) * sum(SOS_list)
 
     def _get_O_PO(self, U):
+        '''return [O_tilde = U*self.ob*U^dag, twirled O_tide] for the given U'''
         O_tilde = Adjoint(U, self.observable)
         PO = self._twirling(O_tilde)
         return O_tilde, PO
     
     def symmetry_guidance(self, U):
+        '''the regularization term value for the given U'''
         O_tilde, PO = self._get_O_PO(U)
         return hs_norm(O_tilde - PO) / len(U)
 
 class SwapSymmetry(Symmetry):
-
+    '''
+    # SwapSymmetry that implements the Symmetry interface
+    # Defined the deployed symmetry group and the global observable by QCs
+    '''
     def __init__(self, num_bits) -> None:
         super().__init__()
         self.dev = qml.device('default.qubit', wires=num_bits)
@@ -89,6 +104,7 @@ class SwapSymmetry(Symmetry):
             qml.SWAP(wires=[i,j])
             return qml.expval(qml.Identity(wires=range(num_bits)))
         
+        #* symmetry group
         swap_ele = list(map(qml.matrix(swap_circ), 
                        [0,1,2,3,4,5],
                        [1,2,3,4,5,0]
@@ -98,7 +114,7 @@ class SwapSymmetry(Symmetry):
         #                  S1, S2, S1 @ S2 ]
         self.group = generate_freegroup(swap_ele)
 
-
+        #* global observable by a QC (Z msmt here)
         @qml.qnode(device=self.dev, diff_method="backprop", interface="torch")
         def observable_circ():
             qml.PauliZ(num_bits-1)

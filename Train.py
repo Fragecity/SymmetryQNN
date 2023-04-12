@@ -3,7 +3,7 @@ import pennylane.numpy as np
 import pennylane as qml
 import pickle, copy
 from DataGenerator import SwapSymmetry
-with open('data_symmetry4.pkl', 'rb') as f:
+with open('Datarepo/data_symmetry4.pkl', 'rb') as f:
         [num_bits, train_data, test_data, symmetry] = pickle.load(f)
 
 
@@ -11,6 +11,7 @@ dev = qml.device('default.mixed', wires=num_bits)
 
 #%% Ansatz
 def ansatz(parameters, num_layers):
+    '''PQC w/o input encoding'''
     para_arr = [parameters[i:i+num_bits] for i in range(0, len(parameters), num_bits)]
     para_arr.reverse()
 
@@ -24,6 +25,7 @@ def ansatz(parameters, num_layers):
     
 @qml.qnode(dev, diff_method="backprop", interface="torch")
 def circuit(x, parameters, num_layers):
+    '''whole circuit'''
     # x = np.append(x,x)
     # x = np.append(x,[0])
     qml.broadcast(qml.RY, wires=range(num_bits), 
@@ -33,6 +35,7 @@ def circuit(x, parameters, num_layers):
     return qml.expval(qml.PauliZ(num_bits-1))
 
 def layer(num_bits, parameters, pattern):
+    '''layer-build helper function for ansatz construction'''
     qml.broadcast(qml.RY, wires=range(num_bits), 
                   pattern="single", parameters=parameters )
     qml.broadcast(qml.CNOT, wires=range(num_bits), pattern=pattern)
@@ -40,6 +43,7 @@ def layer(num_bits, parameters, pattern):
 # %% cost function
 
 def cost(parameter, num_layers):
+    '''cost function without symmetry guidance'''
     # cst_values =  [(circuit(x, parameter, num_layers) + (-1)**label)**2
     #                 for x, label in train_data ]
     cst_values = []
@@ -51,10 +55,12 @@ def cost(parameter, num_layers):
 
 @qml.qnode(dev, diff_method="backprop", interface="torch")
 def U_circ(parameters, num_layer):
+    """turning the ansatz into a unitary matrix"""
     ansatz(parameters, num_layer)
     return qml.expval(qml.Identity(0))
 
 def costG(parameter, num_layer, lamd):
+    '''cost function with symmetry guidance'''
     U = qml.matrix(U_circ)(parameter, num_layer)
     cst = cost(parameter, num_layer)
     g = symmetry.symmetry_guidance(U) 
@@ -84,12 +90,12 @@ def run(record, NUM_LAYER):
     # winner = []
     para_init = np.random.random(NUM_PARA, requires_grad=True) *2*np.pi
 
-
     cost_ = partial(cost, num_layers = NUM_LAYER)
     costG_ = partial(costG, num_layer = NUM_LAYER, lamd = LAMD)
     accuracy_ = partial(accuracy, num_layer = NUM_LAYER)
     para = para_init
     
+    #* shared pre-training
     CUT = int(MAX_ITER/2)
     for it in range(CUT):
         para = opt.step(cost_,para)
@@ -98,6 +104,7 @@ def run(record, NUM_LAYER):
     print('\n')
     paraG = copy.deepcopy(para)
 
+    #* training for comparison
     for it in range(CUT):
 
         para, cst = opt.step_and_cost(cost_, para)
