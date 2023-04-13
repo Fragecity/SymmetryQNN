@@ -1,4 +1,3 @@
-import pennylane.numpy as np
 import pennylane as qml
 import copy
 from functools import partial
@@ -6,17 +5,17 @@ from Losses import cost, costG, accuracy
 from Ansatzs.PQCBase import PQCBase
 
 
-def trainAndCompare(record, pqc: PQCBase, symmetry, train_data, test_data, ETA, LAMD, MAX_ITER):
-    NUM_PARA = (pqc.num_layers + 2) * pqc.num_bits
+def trainAndCompare(record, pqc: PQCBase, para_init, symmetry, train_data, test_data, ETA, LAMD, MAX_ITER):
+    
     opt = qml.AdamOptimizer(stepsize=ETA)
 
     cst_lst = []
     cstG_lst = []
-    para_init = np.random.random(NUM_PARA, requires_grad=True) * 2 * np.pi
-
+    
     cost_ = partial(cost, pqc=pqc, train_data=train_data)
     costG_ = partial(costG, pqc=pqc, symmetry=symmetry, lamd=LAMD, train_data=train_data)
     accuracy_ = partial(accuracy, pqc=pqc, test_data=test_data)
+    
     para = para_init
 
     # * shared pre-training
@@ -29,7 +28,7 @@ def trainAndCompare(record, pqc: PQCBase, symmetry, train_data, test_data, ETA, 
     paraG = copy.deepcopy(para)
 
     # * training for comparison
-    for it in range(CUT):
+    for it in range(CUT):   # CUT MAX_ITER
 
         para, cst = opt.step_and_cost(cost_, para)
         paraG, cstG = opt.step_and_cost(costG_, paraG)

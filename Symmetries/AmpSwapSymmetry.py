@@ -13,14 +13,9 @@ class AmpSwapSymmetry(Symmetry):
         self.dev = qml.device('default.qubit', wires=num_bits)
         self.num_bits = num_bits
 
-        @qml.qnode(device=self.dev, interface="torch")
-        def swap_circ(i, j):
-            qml.SWAP(wires=[i, j])
-            return qml.expval(qml.Identity(wires=range(num_bits)))
-
         #* symmetry group
-        swap_ele = qml.matrix(swap_circ)(0, 1)
-        self.group = swap_ele
+        # TODO: this could be used to draw the 2d-landscape directly
+        self.group = qml.matrix(qml.PauliX)(0)
 
         #* global observable by a QC (Z msmt here)
         @qml.qnode(device=self.dev, diff_method="backprop", interface="torch")
