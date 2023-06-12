@@ -28,4 +28,4 @@ def accuracy(parameters, pqc, test_data):
         if np.abs(prediction - label) < 1: correct += 1
     return correct / len(test_data)
 
-#TODO: why whole train_data passed rather than parched ones?
+#TODO: why whole train_data passed rather than patched ones?

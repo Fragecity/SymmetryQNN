@@ -15,7 +15,9 @@ class ZYCXAnsatz(PQCBase):
 
     def ansatz(self, parameters):
         """PQC w/o input encoding"""
+        # slice parameters into num_bits sub-lists
         para_arr = [parameters[i:i + self.num_bits] for i in range(0, len(parameters), self.num_bits)]
+        #? reverse the order of the sub-lists, but why?
         para_arr.reverse()
 
         qml.broadcast(qml.RZ, wires=range(self.num_bits),

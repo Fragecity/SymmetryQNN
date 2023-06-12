@@ -1,0 +1,9 @@
+{
+    "num_part" : 2,
+    "num_layer" : 8,
+    "max_iter" : 40,
+    "eta" : 1,
+    "num_data" : 80,
+
+    "lambda" : 0.2
+}
