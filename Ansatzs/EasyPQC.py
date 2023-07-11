@@ -15,7 +15,7 @@ class EasyPQC(PQCBase):
         """return U_circ_real function when called"""
         @qml.qnode(self.dev, diff_method="backprop", interface="torch")
         def U_circ_real(parameters):
-            """turning the ansatz into a unitary matrix"""
+            """turning the ansatz into a unitary matrix, not including the ob?"""
             self.ansatz(parameters)
             return qml.expval(self.ansatzOb)
 
