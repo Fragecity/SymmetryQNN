@@ -56,6 +56,12 @@ SWAP = np.array([[1, 0, 0, 0],
                  [0, 1, 0, 0],
                  [0, 0, 0, 1]])
 
+SWAPP = np.array([[1,  0,  0, 0],
+                  [0,  0, -1, 0],
+                  [0, -1,  0, 0],
+                  [0,  0,  0, 1]])
+                  
+
 def CXij(i,j, q_num) -> np.array:
     Idl, Idm, Idr = identity_qb(min(i,j)), identity_qb(np.abs(i-j)-1), identity_qb(q_num-max(i,j)-1)
     if i<j:
@@ -133,12 +139,23 @@ def Adjoint(U: np.array, O: np.array) -> np.array:
 
 # this tensor is consisting  with qiskit (KM)
 def tensorOfListOps(*U):
+    '''Tensor Product of a list of operators, Result in np.kron(C, np.kron(B,A))'''
     U_res = 1
     if len(U)>0:
         for u in U: 
             U_res = np.kron(np.array(u), U_res)
         return U_res
     return None
+
+def tensorOfListOps2(*U):
+    '''Tensor Product of a list of operators, Result in np.kron(np.kron(A,B), C)'''
+    U_res = 1
+    if len(U)>0:
+        for u in U:
+            U_res = np.kron(U_res, np.array(u))
+        return U_res
+    return None
+
 
 def hs_norm(A):
     """Hilbert Schmidt norm"""
@@ -156,6 +173,15 @@ def purify(rho):
     return reduce(add, lin_comb_of_vecs)
 
 #! -------------------------Basic States-------------------------
+
+def zero_state(num_qbits):
+    """Return the zero state of given number of qubits"""
+    return np.array([1] + [0]*(2**num_qbits-1))
+
+def dmx_zero(num_qbits):
+    """Return dmx corresponds to the zero state"""
+    return np.outer(zero_state(num_qbits), zero_state(num_qbits))
+
 def bellState(index:str):
     """
     Generate a Bell state in np.array based on the given index.
