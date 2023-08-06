@@ -16,6 +16,7 @@ class Symmetry:
     |
     V
     self._get_O_PO(U): return [O_tilde = U*O*U^dag] for the given U using #!self.ob and self._twirling
+    since U of the circuit does not contain the observable O
     |
     V
     self.symmetry_guidance(U): return the regularization term value for the given U using #!self.ob and above

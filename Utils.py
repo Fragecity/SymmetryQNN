@@ -1,10 +1,11 @@
 import numpy as np
 import os
 from itertools import product
-from numpy import kron as kr
+# from numpy import kron as kr
 from functools import reduce
 from operator import add
-from collections import Iterable
+# from collections import Iterable
+from scipy.stats import unitary_group
 #TODO: separate below into several files?
 
 # * dataRootPath
@@ -33,11 +34,6 @@ def pauli(i):
 HADAMARD = np.array([[1/np.sqrt(2), 1/np.sqrt(2)],
                    [1/np.sqrt(2), -1/np.sqrt(2)]])
 
-C0 = np.array([[1,0], 
-               [0,0]])
-C1 = np.array([[0,0], 
-               [0,1]])
-
 def Ry(theta) -> np.array:
     return np.array([
         [np.cos(theta), -np.sin(theta)],
@@ -61,14 +57,26 @@ SWAPP = np.array([[1,  0,  0, 0],
                   [0, -1,  0, 0],
                   [0,  0,  0, 1]])
                   
+C0 = np.array([[1,0], 
+               [0,0]])
+C1 = np.array([[0,0], 
+               [0,1]])
 
-def CXij(i,j, q_num) -> np.array:
-    Idl, Idm, Idr = identity_qb(min(i,j)), identity_qb(np.abs(i-j)-1), identity_qb(q_num-max(i,j)-1)
+def CXij(i,j, num_qubits) -> np.array:
+    """orderType: 0 denotes the last qubit
+    
+    Args:
+        i (int): control qubit
+        j (int): target qubit
+        num_qubits (int): total number of qubits
+    """
+    Idl, Idm, Idr = identity_qb(min(i,j)), identity_qb(np.abs(i-j)-1), identity_qb(num_qubits-max(i,j)-1)
     if i<j:
         return tensorOfListOps(Idl, C0, Idm, Id, Idr) + tensorOfListOps(Idl, C1, Idm, X, Idr)
     elif i>j:
         return tensorOfListOps(Idl, Id, Idm, C0, Idr) + tensorOfListOps(Idl, X, Idm, C1, Idr)
-    else: return None
+    else:
+        raise ValueError("i and j should not be the same")
 
 # def CXij(i,j, num_qbits) -> np.array:
 #      Idl, Idm, Idr = 1,1,1
@@ -86,16 +94,41 @@ def CXij(i,j, q_num) -> np.array:
 #      return CNOT
 
 def SWAPij(i,j, num_qbits) -> np.array:
+    """orderType: 0 denotes the last qubit"""
     if i == j:
-        return None
+        raise ValueError("i and j should not be the same")
     down = CXij(i,j, num_qbits)
     up = CXij(j,i, num_qbits)
     return up @ down @ up
 
+def CXij2(i,j, num_qubits) -> np.array:
+    """orderType: 0 denotes the first qubit"""
+    return CXij(num_qubits-1-i, num_qubits-1-j, num_qubits)
+
+def Permutationij(i, j, num_qubits):
+    """Permutation matrix of i-th and j-th qubits
+    
+    Args:
+        i (int): i-th qubit
+        j (int): j-th qubit
+        num_qubits (int): total number of qubits
+    
+    Returns:
+        np.array: Permutation matrix
+
+    Note:
+        OrderType: 0 denotes the first qubit
+    """
+    if i == j:
+        raise ValueError("i and j should not be the same")
+    x_below = CXij2(i,j, num_qubits)
+    x_up = CXij2(j,i, num_qubits)
+    return x_up @ x_below @ x_up
+
 # and this name should be changed
-# def SWAP(i,j, q_num)  -> np.array:
+# def SWAP(i,j, num_qubits)  -> np.array:
 #     if isinstance(i, int):
-#         return SWAPij(i,j, q_num)
+#         return SWAPij(i,j, num_qubits)
 #     elif isinstance(i, Iterable):
 #         for i_item, j_item in zip(i,j):
 #             pass
@@ -171,6 +204,11 @@ def purify(rho):
         for i in range(n)
     ]
     return reduce(add, lin_comb_of_vecs)
+
+def genRandU(num_qubits):
+    """Generate a random unitary matrix using qiskit unitary_group.rvs"""
+    return unitary_group.rvs(2**num_qubits)
+
 
 #! -------------------------Basic States-------------------------
 

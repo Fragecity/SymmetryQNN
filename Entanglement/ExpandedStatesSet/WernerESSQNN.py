@@ -9,6 +9,10 @@ dev1, dev2 = qml.device("default.mixed", wires=2), qml.device("default.mixed", w
 def enc_func(rho, parameters):
     qml.QubitDensityMatrix(rho, wires=[0,1])
 
+def YdY(parameters):
+    qml.RY(parameters[0], wires=0)
+    qml.RY(parameters[1], wires=1)
+
 def ansatz(parameters):
     # parameters = parameters[0]
     # print(parameters)
@@ -131,7 +135,6 @@ def ansatz_p2_ps_c1(parameters):
 
 def ansatz_p2_ps_minimum(parameters):
     """caculated circuit form
-
     haved tested and works well
     """
     # part3
@@ -148,6 +151,8 @@ def ansatz_p2_ps_minimum(parameters):
     qml.ctrl(qml.PauliX, (0, 1, 2), control_values=(0, 1, 0))(wires=3)
     qml.ctrl(qml.PauliX, (0, 1, 2), control_values=(0, 1, 1))(wires=3)
 
+    # part1
+    qml.U3(parameters[18], parameters[19], parameters[20], wires=3)
 
 
 

@@ -1,11 +1,13 @@
 from itertools import product
 import pennylane as qml
 import numpy as np
-from Utils import X, Y, Z, Id, SWAPij
+import sympy as sp
+from Utils import X, Y, Z, Id, SWAPij, SWAP
 from functools import reduce
 from operator import matmul
 from qiskit.circuit import QuantumCircuit
 from qiskit.quantum_info.operators import Operator
+from qiskit.quantum_info import partial_trace, DensityMatrix
 
 #! --------------------------------- Basic operations --------------------------------- #
 
@@ -51,6 +53,82 @@ def bell_unitary(num_qubit):
         return qml.expval(qml.PauliZ(0))
     return qml.matrix(bell_circ)()
 
+
+#! --------------------------------- Werner state Symmetry --------------------------------- #
+
+def flip_operator(num_qubit_each):
+    """Flip Operator in Equ.43, MeleIntro2023
+    
+    Args:
+        num_qubit_each (int): number of qubits in each subsystem
+
+    Returns:
+        np.array: the flip operator
+
+    Note:
+        when num_qubit_each = 1, F = SWAP
+    """
+    d = 2**num_qubit_each
+    d_whole = 2**(2*num_qubit_each)
+    F = np.zeros((d_whole, d_whole))
+
+    basis = [np.zeros((1,d)) for i in range(d)]
+    for i in range(d):
+        basis[i][0][i] = 1
+        
+    for i in range(d):
+        for j in range(d):
+            F += np.kron(basis[i].T @ basis[j], basis[j].T @ basis[i])
+
+    return F
+
+def wernerTwirling(num_qubit_each, O):
+    """Werner Twirling Constructed according to Equ.47, MeleIntro2023
+    
+    Args:
+        num_qubit_each (int): number of qubits in each subsystem
+        O (np.array): operator to be twirled
+
+    Returns:
+        np.array: twirled operator
+    """
+    F = flip_operator(num_qubit_each)
+    IdMx = np.eye(2**(2*num_qubit_each))
+
+    d = 2**num_qubit_each
+    cio = (np.trace(O)-1/d * np.trace(F @ O)) / (d**2-1)
+    cfo = (np.trace(F @ O)-1/d * np.trace(O)) / (d**2-1)
+    
+    return cio * IdMx + cfo * F
+
+def wernerAncillaTwirl(num_qubits_each, num_ancilla, O):
+    """(Testing) Werner Twirling Constructed for PQC with ancilla qubits, only suit for k=2 case
+
+    Unckecked yet 
+
+    Args:
+        num_qubits_each (int): number of qubits in each subsystem (ignoring ancilla)
+        num_ancilla (int): number of ancilla qubits
+        O (np.array): the observable to be twirled
+
+    Returns:
+        np.array: the twirled observable
+
+    """
+    d = 2**num_qubits_each
+
+    F = SWAP
+    IdA = np.eye(2**d) # A means the first subsystem, not ancilla
+    IdAncilla = np.eye(2**num_ancilla)
+    
+    #* partial traced matrices
+    indexes_tracedOut = [i for i in range(num_ancilla)] # 0 means the last qubit in qiskit
+    TrAOab = partial_trace(DensityMatrix(O), indexes_tracedOut)
+
+    O_p = O @ np.kron(F, IdAncilla)
+    TrAOabFI = partial_trace(DensityMatrix(O_p), indexes_tracedOut)
+    
+    return 1/(d**2-1) * (np.kron(IdA, TrAOab-1/d*TrAOabFI) + np.kron(F, TrAOabFI-1/d*TrAOab))
 
 #! --------------------------------- Werner state_Qk --------------------------------- #
 
@@ -139,10 +217,11 @@ def witness_PL(num_qubit):
 
 #* PPT criterion for 2-qubits system
 def partial_transpose(rho, dims):
-    """
-    Inputs:
-        rho: 输入的密度矩阵
-        dims: 系统的维度，对于一个二比特系统，dims=[2,2]
+    """Partial transpose for a 2-qubit density matrix
+
+    Args:
+        rho (np.array or MutableSpMatrix): 2-qubit density matrix
+        dims: dim_stm, here dims=[2,2]
     """ 
     n = len(dims)
     transposed_rho = rho.copy()
@@ -155,8 +234,11 @@ def partial_transpose(rho, dims):
     return transposed_rho
 
 def is_positive_semi_definite(matrix):
-    """检查矩阵的所有本征值是否都非负(sympy)"""
-    return all(eigenval >= 0 for eigenval in matrix.eigenvals().keys())
+    """Check if all eigenvalues of the matrix are non-negative"""
+
+    matrix = np.array(matrix).astype('complex64')
+    eigenvalues = np.linalg.eigvals(matrix)
+    return np.all(eigenvalues >= 0)
 
 def is_entangled(rho, dims):
     """all three are used for checking sympy matrix"""

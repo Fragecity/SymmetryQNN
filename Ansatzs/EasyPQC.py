@@ -1,7 +1,6 @@
 import pennylane as qml
 from Ansatzs.PQCBase import PQCBase
 
-#TODO: to be tested
 class EasyPQC(PQCBase):
     def __init__(self, dev, enc_func, ansatz, ansatzOb, wCirOb):
         super().__init__(dev)
@@ -15,16 +14,21 @@ class EasyPQC(PQCBase):
         """return U_circ_real function when called"""
         @qml.qnode(self.dev, diff_method="backprop", interface="torch")
         def U_circ_real(parameters):
-            """turning the ansatz into a unitary matrix, not including the ob?"""
+            """turning the ansatz into a unitary matrix, not including the ob?
+            Note: real here means the true function, not about complex numbers.
+            """
             self.ansatz(parameters)
             return qml.expval(self.ansatzOb)
 
         return U_circ_real
 
     def circuit(self, x, parameters):
+        """return circuit_real function, which evals the whole circuit using wCirOb, when called"""
         @qml.qnode(self.dev, diff_method="backprop", interface="torch")
         def circuit_real(x, parameters):
-            """whole circuit"""
+            """whole circuit
+            Note: real here means the true function, not about complex numbers.
+            """
             self.enc_func(x, parameters)
             self.ansatz(parameters)
             return qml.expval(self.wCirOb)
