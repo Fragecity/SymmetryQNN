@@ -248,5 +248,6 @@ np.save(savePathRoot + "cst.npy", np.array(cst_List))
 np.save(savePathRoot + "cstG.npy", np.array(cstG_List))
 np.save(savePathRoot + "acc.npy", np.array(acc_List))
 np.save(savePathRoot + "accG.npy", np.array(accG_List))
+np.save(savePathRoot + "sgVal.npy", np.array(sgRecord['valList']))
 
 print("training curves: plot and save finished")
