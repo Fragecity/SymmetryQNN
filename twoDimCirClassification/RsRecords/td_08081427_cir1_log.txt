@@ -1,0 +1,44 @@
+saveDate: 08081427
+
+useShuffleSeed: False
+ShuffleSeed: 42
+Ansatz: cir1
+
+NUM_BATCH: 28
+Num_Epoch: 2
+Step_Size: 0.01
+SG_Weight: 1
+
+Logs:
+Before training
+Accuracy on train_ds:  0.4533333333333333
+Accuracy on test_ds:  0.5166666666666667
+---------------- Start training ----------------
+Eopch: 01, train_ds cst: 1.0160:, acc:  0.4844, cstG: 1.4487:, accG:  0.4844
+Eopch: 02, train_ds cst: 1.0042:, acc:  0.5033, cstG: 1.3683:, accG:  0.5033
+---------------- Finished training ----------------
+FinalTrain:
+acc_train:  0.5033, acc_test:  0.5067
+accG_train:  0.5033, accG_test:  0.5067
+bestTrain:
+bestTrainAcc:  0.5033, bestTrainAccTest:  0.5067, at Epoch: 2
+bestTrainAccG:  0.5033, bestTrainAccGTest:  0.5067, at Epoch: 2
+
+Other Info:
+Ob1: 
+[[ 1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]
+ [ 0 -1  0  0  0  0  0  0  0  0  0  0  0  0  0  0]
+ [ 0  0 -1  0  0  0  0  0  0  0  0  0  0  0  0  0]
+ [ 0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0]
+ [ 0  0  0  0 -1  0  0  0  0  0  0  0  0  0  0  0]
+ [ 0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0]
+ [ 0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0]
+ [ 0  0  0  0  0  0  0 -1  0  0  0  0  0  0  0  0]
+ [ 0  0  0  0  0  0  0  0 -1  0  0  0  0  0  0  0]
+ [ 0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0]
+ [ 0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0 -1  0  0  0  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0  0  0 -1  0  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0  0  0  0 -1  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1]]

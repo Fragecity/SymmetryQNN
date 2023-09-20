@@ -1,0 +1,74 @@
+saveDate: 08082034
+
+useShuffleSeed: False
+ShuffleSeed: 42
+Ansatz: cir4
+
+NUM_BATCH: 56
+Num_Epoch: 32
+Step_Size: 0.012
+SG_Weight: 1
+
+Logs:
+Before training
+Accuracy on train_ds:  0.3377777777777778
+Accuracy on test_ds:  0.33
+---------------- Start training ----------------
+Eopch: 01, train_ds cst: 0.6125:, acc:  0.8122, cstG: 0.0000:, accG:  0.0000
+Eopch: 02, train_ds cst: 0.5225:, acc:  0.8367, cstG: 0.0000:, accG:  0.0000
+Eopch: 03, train_ds cst: 0.4778:, acc:  0.8633, cstG: 0.0000:, accG:  0.0000
+Eopch: 04, train_ds cst: 0.4520:, acc:  0.8867, cstG: 0.0000:, accG:  0.0000
+Eopch: 05, train_ds cst: 0.4388:, acc:  0.8933, cstG: 0.0000:, accG:  0.0000
+Eopch: 06, train_ds cst: 0.4335:, acc:  0.8933, cstG: 0.0000:, accG:  0.0000
+Eopch: 07, train_ds cst: 0.4353:, acc:  0.9000, cstG: 0.0000:, accG:  0.0000
+Eopch: 08, train_ds cst: 0.4303:, acc:  0.8956, cstG: 0.0000:, accG:  0.0000
+Eopch: 09, train_ds cst: 0.4281:, acc:  0.8933, cstG: 0.0000:, accG:  0.0000
+Eopch: 10, train_ds cst: 0.4276:, acc:  0.8989, cstG: 0.0000:, accG:  0.0000
+Eopch: 11, train_ds cst: 0.4264:, acc:  0.8933, cstG: 0.0000:, accG:  0.0000
+Eopch: 12, train_ds cst: 0.4253:, acc:  0.8944, cstG: 0.0000:, accG:  0.0000
+Eopch: 13, train_ds cst: 0.4216:, acc:  0.8956, cstG: 0.0000:, accG:  0.0000
+Eopch: 14, train_ds cst: 0.4192:, acc:  0.9044, cstG: 0.0000:, accG:  0.0000
+Eopch: 15, train_ds cst: 0.4163:, acc:  0.9111, cstG: 0.0000:, accG:  0.0000
+Eopch: 16, train_ds cst: 0.4073:, acc:  0.9122, cstG: 0.0000:, accG:  0.0000
+Eopch: 17, train_ds cst: 0.3950:, acc:  0.9022, cstG: 0.0000:, accG:  0.0000
+Eopch: 18, train_ds cst: 0.3847:, acc:  0.9078, cstG: 0.0000:, accG:  0.0000
+Eopch: 19, train_ds cst: 0.3747:, acc:  0.9044, cstG: 0.0000:, accG:  0.0000
+Eopch: 20, train_ds cst: 0.3726:, acc:  0.9089, cstG: 0.0000:, accG:  0.0000
+Eopch: 21, train_ds cst: 0.3702:, acc:  0.9089, cstG: 0.0000:, accG:  0.0000
+Eopch: 22, train_ds cst: 0.3700:, acc:  0.9100, cstG: 0.0000:, accG:  0.0000
+Eopch: 23, train_ds cst: 0.3682:, acc:  0.9100, cstG: 0.0000:, accG:  0.0000
+Eopch: 24, train_ds cst: 0.3680:, acc:  0.9111, cstG: 0.0000:, accG:  0.0000
+Eopch: 25, train_ds cst: 0.3670:, acc:  0.9078, cstG: 0.0000:, accG:  0.0000
+Eopch: 26, train_ds cst: 0.3672:, acc:  0.9167, cstG: 0.0000:, accG:  0.0000
+Eopch: 27, train_ds cst: 0.3659:, acc:  0.9178, cstG: 0.0000:, accG:  0.0000
+Eopch: 28, train_ds cst: 0.3637:, acc:  0.9156, cstG: 0.0000:, accG:  0.0000
+Eopch: 29, train_ds cst: 0.3596:, acc:  0.9189, cstG: 0.0000:, accG:  0.0000
+Eopch: 30, train_ds cst: 0.3566:, acc:  0.9300, cstG: 0.0000:, accG:  0.0000
+Eopch: 31, train_ds cst: 0.3492:, acc:  0.9322, cstG: 0.0000:, accG:  0.0000
+Eopch: 32, train_ds cst: 0.3452:, acc:  0.9300, cstG: 0.0000:, accG:  0.0000
+---------------- Finished training ----------------
+FinalTrain:
+acc_train:  0.9300, acc_test:  0.9400
+accG_train:  0.3378, accG_test:  0.3300
+bestTrain:
+bestTrainAcc:  0.9322, bestTrainAccTest:  0.9400, at Epoch: 31
+bestTrainAccG:  0.0000, bestTrainAccGTest:  0.7767, at Epoch: 1
+
+Other Info:
+Ob1: 
+[[ 1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]
+ [ 0 -1  0  0  0  0  0  0  0  0  0  0  0  0  0  0]
+ [ 0  0 -1  0  0  0  0  0  0  0  0  0  0  0  0  0]
+ [ 0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0]
+ [ 0  0  0  0 -1  0  0  0  0  0  0  0  0  0  0  0]
+ [ 0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0]
+ [ 0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0]
+ [ 0  0  0  0  0  0  0 -1  0  0  0  0  0  0  0  0]
+ [ 0  0  0  0  0  0  0  0 -1  0  0  0  0  0  0  0]
+ [ 0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0]
+ [ 0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0 -1  0  0  0  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0  0  0 -1  0  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0  0  0  0 -1  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1]]
