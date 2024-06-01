@@ -1,6 +1,6 @@
 import numpy as np
 # import cupy as cp
-from multiprocessing import Pool
+from multiprocessing import Pool, cpu_count
 import warnings
 # with warnings.catch_warnings():
 #     warnings.simplefilter("ignore")
@@ -25,16 +25,26 @@ class Optimizer:
     def grad(self, func, para: np.array) -> np.array:
         n = len(para)
         II = np.eye(n)
-        plus = para + self.EPS * II
-        minus = para - self.EPS * II
 
-        with Pool() as pool:
-            plus_eval = pool.map(self.parallel_func_evaluation, [(func, p) for p in plus])
-            minus_eval = pool.map(self.parallel_func_evaluation, [(func, m) for m in minus])
-
-        gradient = (np.array(plus_eval) - np.array(minus_eval)) / (2 * self.EPS)
+        gradient = np.zeros(n)
+        for i in range(n):
+            plus_param = para + self.EPS * II[i]
+            minus_param = para - self.EPS * II[i]
+            plus_eval = func(plus_param)
+            minus_eval = func(minus_param)
+            gradient[i] = (plus_eval - minus_eval) / (2 * self.EPS)
 
         return gradient
+        # plus = para + self.EPS * II
+        # minus = para - self.EPS * II
+        #
+        # with Pool() as pool:
+        #     plus_eval = pool.map(self.parallel_func_evaluation, [(func, p) for p in plus])
+        #     minus_eval = pool.map(self.parallel_func_evaluation, [(func, m) for m in minus])
+        #
+        # gradient = (np.array(plus_eval) - np.array(minus_eval)) / (2 * self.EPS)
+        #
+        # return gradient
 
     # def grad_gpu(self, func, para: cp.array) -> cp.array:
     #     para = cp.asarray(para)
