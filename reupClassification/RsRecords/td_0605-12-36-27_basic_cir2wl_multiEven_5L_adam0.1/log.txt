@@ -1,0 +1,123 @@
+saveDate: 0605-12-36-27
+
+Ansatz: cir2wl_multiEven
+NUM_LAYERS: 5
+Num_Epoch: 1
+
+Optimizer: adam
+Step_Size: 0.1
+NUM_BATCH: 80
+
+DS_TYPE: basic
+useShuffleSeed: False
+ShuffleSeed: 42
+
+Logs:
+Before training
+Accuracy on train_ds:  0.2875
+Accuracy on test_ds:  0.28
+---------------- Start training ----------------
+Epoch: 01, cnt: 1, train_ds cst: 0.5998:, acc:  0.3412, cstG: 0.5699:, accG:  0.2275
+Epoch: 01, cnt: 2, train_ds cst: 0.5783:, acc:  0.3937, cstG: 0.4975:, accG:  0.2188
+Epoch: 01, cnt: 3, train_ds cst: 0.5447:, acc:  0.4537, cstG: 0.4682:, accG:  0.2375
+Epoch: 01, cnt: 4, train_ds cst: 0.5063:, acc:  0.4700, cstG: 0.4711:, accG:  0.3113
+Epoch: 01, cnt: 5, train_ds cst: 0.4775:, acc:  0.4938, cstG: 0.4868:, accG:  0.3488
+Epoch: 01, cnt: 6, train_ds cst: 0.4628:, acc:  0.4975, cstG: 0.4822:, accG:  0.3900
+Epoch: 01, cnt: 7, train_ds cst: 0.4457:, acc:  0.5150, cstG: 0.4641:, accG:  0.3900
+Epoch: 01, cnt: 8, train_ds cst: 0.4268:, acc:  0.5400, cstG: 0.4491:, accG:  0.3925
+Epoch: 01, cnt: 9, train_ds cst: 0.4151:, acc:  0.5513, cstG: 0.4402:, accG:  0.3962
+Epoch: 01, cnt: 10, train_ds cst: 0.4148:, acc:  0.5500, cstG: 0.4466:, accG:  0.3975
+Epoch: 01, cnt: 11, train_ds cst: 0.4219:, acc:  0.5475, cstG: 0.4708:, accG:  0.4100
+Epoch: 01, cnt: 12, train_ds cst: 0.4184:, acc:  0.5437, cstG: 0.4733:, accG:  0.4012
+Epoch: 01, cnt: 13, train_ds cst: 0.4121:, acc:  0.5513, cstG: 0.4646:, accG:  0.4050
+Epoch: 01, cnt: 14, train_ds cst: 0.4029:, acc:  0.5400, cstG: 0.4449:, accG:  0.3825
+Epoch: 01, cnt: 15, train_ds cst: 0.3987:, acc:  0.5350, cstG: 0.4403:, accG:  0.3563
+Epoch: 01, cnt: 16, train_ds cst: 0.3931:, acc:  0.5375, cstG: 0.4286:, accG:  0.3225
+Epoch: 01, cnt: 17, train_ds cst: 0.3862:, acc:  0.5350, cstG: 0.4088:, accG:  0.3412
+Epoch: 01, cnt: 18, train_ds cst: 0.3770:, acc:  0.5312, cstG: 0.3879:, accG:  0.3600
+Epoch: 01, cnt: 19, train_ds cst: 0.3708:, acc:  0.5250, cstG: 0.3697:, accG:  0.3825
+Epoch: 01, cnt: 20, train_ds cst: 0.3645:, acc:  0.5300, cstG: 0.3631:, accG:  0.3775
+Epoch: 01, cnt: 21, train_ds cst: 0.3568:, acc:  0.5363, cstG: 0.3717:, accG:  0.3825
+Epoch: 01, cnt: 22, train_ds cst: 0.3528:, acc:  0.5375, cstG: 0.3853:, accG:  0.3962
+Epoch: 01, cnt: 23, train_ds cst: 0.3536:, acc:  0.5387, cstG: 0.3959:, accG:  0.4000
+Epoch: 01, cnt: 24, train_ds cst: 0.3579:, acc:  0.5225, cstG: 0.4025:, accG:  0.3850
+Epoch: 01, cnt: 25, train_ds cst: 0.3648:, acc:  0.5363, cstG: 0.4066:, accG:  0.3688
+Epoch: 01, cnt: 26, train_ds cst: 0.3756:, acc:  0.5400, cstG: 0.4120:, accG:  0.3775
+Epoch: 01, cnt: 27, train_ds cst: 0.3931:, acc:  0.5450, cstG: 0.4140:, accG:  0.3887
+Epoch: 01, cnt: 28, train_ds cst: 0.3992:, acc:  0.5537, cstG: 0.4163:, accG:  0.4050
+Epoch: 01, cnt: 29, train_ds cst: 0.3938:, acc:  0.5675, cstG: 0.4188:, accG:  0.4113
+Epoch: 01, cnt: 30, train_ds cst: 0.3782:, acc:  0.5713, cstG: 0.4102:, accG:  0.4088
+Epoch: 01, cnt: 31, train_ds cst: 0.3738:, acc:  0.5463, cstG: 0.4072:, accG:  0.4100
+Epoch: 01, cnt: 32, train_ds cst: 0.3727:, acc:  0.5450, cstG: 0.4068:, accG:  0.4025
+Epoch: 01, cnt: 33, train_ds cst: 0.3748:, acc:  0.5288, cstG: 0.4094:, accG:  0.3975
+Epoch: 01, cnt: 34, train_ds cst: 0.3799:, acc:  0.5275, cstG: 0.4127:, accG:  0.4000
+Epoch: 01, cnt: 35, train_ds cst: 0.3752:, acc:  0.5387, cstG: 0.3981:, accG:  0.4025
+Epoch: 01, cnt: 36, train_ds cst: 0.3746:, acc:  0.5550, cstG: 0.3870:, accG:  0.3900
+Epoch: 01, cnt: 37, train_ds cst: 0.3762:, acc:  0.5775, cstG: 0.3819:, accG:  0.4113
+Epoch: 01, cnt: 38, train_ds cst: 0.3764:, acc:  0.5900, cstG: 0.3824:, accG:  0.4238
+Epoch: 01, cnt: 39, train_ds cst: 0.3741:, acc:  0.6000, cstG: 0.3866:, accG:  0.4213
+Epoch: 01, cnt: 40, train_ds cst: 0.3768:, acc:  0.5975, cstG: 0.3901:, accG:  0.4338
+Epoch: 01, cnt: 41, train_ds cst: 0.3845:, acc:  0.5950, cstG: 0.3936:, accG:  0.4263
+Epoch: 01, cnt: 42, train_ds cst: 0.3955:, acc:  0.5825, cstG: 0.3969:, accG:  0.4313
+Epoch: 01, cnt: 43, train_ds cst: 0.4099:, acc:  0.5725, cstG: 0.3967:, accG:  0.4238
+Epoch: 01, cnt: 44, train_ds cst: 0.4193:, acc:  0.5513, cstG: 0.3955:, accG:  0.4275
+Epoch: 01, cnt: 45, train_ds cst: 0.4423:, acc:  0.5138, cstG: 0.3972:, accG:  0.4213
+Epoch: 01, cnt: 46, train_ds cst: 0.4512:, acc:  0.5100, cstG: 0.3967:, accG:  0.4150
+Epoch: 01, cnt: 47, train_ds cst: 0.4447:, acc:  0.5175, cstG: 0.3936:, accG:  0.4088
+Epoch: 01, cnt: 48, train_ds cst: 0.4320:, acc:  0.5262, cstG: 0.3916:, accG:  0.4012
+Epoch: 01, cnt: 49, train_ds cst: 0.4210:, acc:  0.5450, cstG: 0.3908:, accG:  0.3950
+Epoch: 01, cnt: 50, train_ds cst: 0.4000:, acc:  0.5400, cstG: 0.3889:, accG:  0.3975
+Epoch: 01, cnt: 51, train_ds cst: 0.3887:, acc:  0.5275, cstG: 0.3855:, accG:  0.3937
+Epoch: 01, cnt: 52, train_ds cst: 0.3808:, acc:  0.5300, cstG: 0.3843:, accG:  0.3887
+Epoch: 01, cnt: 53, train_ds cst: 0.3815:, acc:  0.5425, cstG: 0.3850:, accG:  0.3812
+Epoch: 01, cnt: 54, train_ds cst: 0.3887:, acc:  0.5363, cstG: 0.3843:, accG:  0.3762
+Epoch: 01, cnt: 55, train_ds cst: 0.3880:, acc:  0.5563, cstG: 0.3840:, accG:  0.3600
+Epoch: 01, cnt: 56, train_ds cst: 0.3861:, acc:  0.5587, cstG: 0.3827:, accG:  0.3350
+Epoch: 01, cnt: 57, train_ds cst: 0.3756:, acc:  0.5663, cstG: 0.3808:, accG:  0.2925
+Epoch: 01, cnt: 58, train_ds cst: 0.3666:, acc:  0.5737, cstG: 0.3805:, accG:  0.2775
+Epoch: 01, cnt: 59, train_ds cst: 0.3567:, acc:  0.5800, cstG: 0.3787:, accG:  0.2637
+Epoch: 01, cnt: 60, train_ds cst: 0.3589:, acc:  0.5825, cstG: 0.3782:, accG:  0.2625
+Epoch: 01, cnt: 61, train_ds cst: 0.3667:, acc:  0.5875, cstG: 0.3796:, accG:  0.2575
+Epoch: 01, cnt: 62, train_ds cst: 0.3761:, acc:  0.5737, cstG: 0.3802:, accG:  0.2625
+Epoch: 01, cnt: 63, train_ds cst: 0.3779:, acc:  0.5687, cstG: 0.3782:, accG:  0.2600
+Epoch: 01, cnt: 64, train_ds cst: 0.3783:, acc:  0.5563, cstG: 0.3760:, accG:  0.2762
+Epoch: 01, cnt: 65, train_ds cst: 0.3725:, acc:  0.5525, cstG: 0.3732:, accG:  0.2875
+Epoch: 01, cnt: 66, train_ds cst: 0.3705:, acc:  0.5537, cstG: 0.3736:, accG:  0.3000
+Epoch: 01, cnt: 67, train_ds cst: 0.3681:, acc:  0.5675, cstG: 0.3754:, accG:  0.3013
+Epoch: 01, cnt: 68, train_ds cst: 0.3694:, acc:  0.5687, cstG: 0.3780:, accG:  0.3113
+Epoch: 01, cnt: 69, train_ds cst: 0.3710:, acc:  0.5650, cstG: 0.3809:, accG:  0.3225
+Epoch: 01, cnt: 70, train_ds cst: 0.3760:, acc:  0.5525, cstG: 0.3809:, accG:  0.3438
+Epoch: 01, cnt: 71, train_ds cst: 0.3787:, acc:  0.5450, cstG: 0.3804:, accG:  0.3538
+Epoch: 01, cnt: 72, train_ds cst: 0.3751:, acc:  0.5400, cstG: 0.3776:, accG:  0.3650
+Epoch: 01, cnt: 73, train_ds cst: 0.3721:, acc:  0.5437, cstG: 0.3727:, accG:  0.3550
+Epoch: 01, cnt: 74, train_ds cst: 0.3668:, acc:  0.5525, cstG: 0.3673:, accG:  0.3588
+Epoch: 01, cnt: 75, train_ds cst: 0.3615:, acc:  0.5587, cstG: 0.3630:, accG:  0.3738
+Epoch: 01, cnt: 76, train_ds cst: 0.3567:, acc:  0.5613, cstG: 0.3606:, accG:  0.3787
+Epoch: 01, cnt: 77, train_ds cst: 0.3546:, acc:  0.5637, cstG: 0.3617:, accG:  0.3675
+Epoch: 01, cnt: 78, train_ds cst: 0.3510:, acc:  0.5625, cstG: 0.3615:, accG:  0.3700
+Epoch: 01, cnt: 79, train_ds cst: 0.3490:, acc:  0.5563, cstG: 0.3613:, accG:  0.3575
+Epoch: 01, cnt: 80, train_ds cst: 0.3486:, acc:  0.5563, cstG: 0.3640:, accG:  0.3475
+---------------- Finished training ----------------
+FinalTrain:
+acc_train:  0.5563, acc_test:  0.5650
+accG_train:  0.3475, accG_test:  0.3100
+bestTrain:
+bestTrainAcc:  0.6000, bestTrainAccTest:  0.5950, at Epoch: 1, at Batch: 39
+bestTrainAccG:  0.4338, bestTrainAccGTest:  0.3900, at Epoch: 1 at Batch: 40
+
+Other Info:
+Ob1: 
+[[ 1  0  0 ...  0  0  0]
+ [ 0  1  0 ...  0  0  0]
+ [ 0  0  1 ...  0  0  0]
+ ...
+ [ 0  0  0 ... -1  0  0]
+ [ 0  0  0 ...  0 -1  0]
+ [ 0  0  0 ...  0  0 -1]]Ob2: 
+[[ 1  0  0 ...  0  0  0]
+ [ 0  1  0 ...  0  0  0]
+ [ 0  0  1 ...  0  0  0]
+ ...
+ [ 0  0  0 ... -1  0  0]
+ [ 0  0  0 ...  0 -1  0]
+ [ 0  0  0 ...  0  0 -1]]

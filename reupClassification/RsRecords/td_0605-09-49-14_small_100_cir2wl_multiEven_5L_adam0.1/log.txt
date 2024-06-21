@@ -1,0 +1,53 @@
+saveDate: 0605-09-49-14
+
+Ansatz: cir2wl_multiEven
+NUM_LAYERS: 5
+Num_Epoch: 1
+
+Optimizer: adam
+Step_Size: 0.1
+NUM_BATCH: 10
+
+DS_TYPE: small_100
+useShuffleSeed: False
+ShuffleSeed: 42
+
+Logs:
+Before training
+Accuracy on train_ds:  0.20588235294117646
+Accuracy on test_ds:  0.3076923076923077
+---------------- Start training ----------------
+Epoch: 01, cnt: 1, train_ds cst: 0.6310:, acc:  0.3627, cstG: 0.5066:, accG:  0.2157
+Epoch: 01, cnt: 2, train_ds cst: 0.5447:, acc:  0.4510, cstG: 0.4973:, accG:  0.2549
+Epoch: 01, cnt: 3, train_ds cst: 0.5162:, acc:  0.4412, cstG: 0.4727:, accG:  0.3431
+Epoch: 01, cnt: 4, train_ds cst: 0.4954:, acc:  0.5000, cstG: 0.4289:, accG:  0.4216
+Epoch: 01, cnt: 5, train_ds cst: 0.4462:, acc:  0.5588, cstG: 0.4083:, accG:  0.4020
+Epoch: 01, cnt: 6, train_ds cst: 0.4120:, acc:  0.6078, cstG: 0.4062:, accG:  0.3824
+Epoch: 01, cnt: 7, train_ds cst: 0.3903:, acc:  0.5980, cstG: 0.4101:, accG:  0.4020
+Epoch: 01, cnt: 8, train_ds cst: 0.3784:, acc:  0.6078, cstG: 0.4136:, accG:  0.3725
+Epoch: 01, cnt: 9, train_ds cst: 0.3728:, acc:  0.5686, cstG: 0.4138:, accG:  0.3725
+Epoch: 01, cnt: 10, train_ds cst: 0.3595:, acc:  0.5196, cstG: 0.4078:, accG:  0.4118
+---------------- Finished training ----------------
+FinalTrain:
+acc_train:  0.5196, acc_test:  0.4615
+accG_train:  0.4118, accG_test:  0.5000
+bestTrain:
+bestTrainAcc:  0.6078, bestTrainAccTest:  0.4231, at Epoch: 1, at Batch: 8
+bestTrainAccG:  0.4216, bestTrainAccGTest:  0.4615, at Epoch: 1 at Batch: 4
+
+Other Info:
+Ob1: 
+[[ 1  0  0 ...  0  0  0]
+ [ 0  1  0 ...  0  0  0]
+ [ 0  0  1 ...  0  0  0]
+ ...
+ [ 0  0  0 ... -1  0  0]
+ [ 0  0  0 ...  0 -1  0]
+ [ 0  0  0 ...  0  0 -1]]Ob2: 
+[[ 1  0  0 ...  0  0  0]
+ [ 0  1  0 ...  0  0  0]
+ [ 0  0  1 ...  0  0  0]
+ ...
+ [ 0  0  0 ... -1  0  0]
+ [ 0  0  0 ...  0 -1  0]
+ [ 0  0  0 ...  0  0 -1]]

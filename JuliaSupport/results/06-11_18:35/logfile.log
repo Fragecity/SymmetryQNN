@@ -1,0 +1,9 @@
+┌ Info: qubits number: 8
+│ layer number: 20
+│ samples number: 2048
+│ learning rate: 0.07
+│ epoch number: 32
+│ 
+│ run time: 13 minutes seconds
+│ accuracy: 0.4532871972318339
+└ @ Main /home/bkm/Projects/SymmetryQNN/JuliaSupport/main.jl:47

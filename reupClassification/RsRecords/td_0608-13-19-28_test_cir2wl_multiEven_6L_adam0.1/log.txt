@@ -1,0 +1,44 @@
+saveDate: 0608-13-19-28
+
+Ansatz: cir2wl_multiEven
+NUM_LAYERS: 6
+Num_Epoch: 1
+
+Optimizer: adam
+Step_Size: 0.1
+NUM_BATCH: 1
+
+DS_TYPE: test
+useShuffleSeed: False
+ShuffleSeed: 42
+
+Logs:
+Before training
+Accuracy on train_ds:  0.2
+Accuracy on test_ds:  0.42857142857142855
+---------------- Start training ----------------
+Epoch: 01, cnt: 1, train_ds cst: 0.8435:, acc:  0.3200, cstG: 0.4897:, accG:  0.1600
+---------------- Finished training ----------------
+FinalTrain:
+acc_train:  0.3200, acc_test:  0.4286
+accG_train:  0.1600, accG_test:  0.4286
+bestTrain:
+bestTrainAcc:  0.3200, bestTrainAccTest:  0.4286, at Epoch: 1, at Batch: 1
+bestTrainAccG:  0.1600, bestTrainAccGTest:  0.4286, at Epoch: 1 at Batch: 1
+
+Other Info:
+Ob1: 
+[[ 1  0  0 ...  0  0  0]
+ [ 0  1  0 ...  0  0  0]
+ [ 0  0  1 ...  0  0  0]
+ ...
+ [ 0  0  0 ... -1  0  0]
+ [ 0  0  0 ...  0 -1  0]
+ [ 0  0  0 ...  0  0 -1]]Ob2: 
+[[ 1  0  0 ...  0  0  0]
+ [ 0 -1  0 ...  0  0  0]
+ [ 0  0  1 ...  0  0  0]
+ ...
+ [ 0  0  0 ... -1  0  0]
+ [ 0  0  0 ...  0  1  0]
+ [ 0  0  0 ...  0  0 -1]]

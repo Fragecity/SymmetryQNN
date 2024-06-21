@@ -1,0 +1,28 @@
+{
+    "circuit_info":{
+        "num_qubits": 10,
+        "num_layer": 28
+    },
+
+    "data_info":{
+        "num_data": 2048,
+        "x_range":1.0,
+        "y_range":1.0,
+        "center_x": 0.5,
+        "center_y": 0.5,
+        "radius_inner": 0.2,
+        "radius_outer": 0.4
+    },
+
+    "train_info":{
+        "sample_num": 1024,
+        "num_epoch": 64,
+        "learning_rate": 0.05,
+        "is_CUDA": false,
+        "do_cache":true,
+        "guidance_coeff": 0.1,
+        "batch_size": 64,
+        "bias": 1
+    }
+    
+}

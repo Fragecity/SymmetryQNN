@@ -1,0 +1,55 @@
+saveDate: 0606-10-42-14
+
+Ansatz: cir2wl_multiEven
+NUM_LAYERS: 14
+Num_Epoch: 1
+
+Optimizer: adam
+Step_Size: 0.1
+NUM_BATCH: 12
+
+DS_TYPE: basic
+useShuffleSeed: False
+ShuffleSeed: 42
+
+Logs:
+Before training
+Accuracy on train_ds:  0.3422982885085575
+Accuracy on test_ds:  0.3883495145631068
+---------------- Start training ----------------
+Epoch: 01, cnt: 1, train_ds cst: 0.3887:, acc:  0.5134, cstG: 0.4328:, accG:  0.4377
+Epoch: 01, cnt: 2, train_ds cst: 0.4262:, acc:  0.5086, cstG: 0.4124:, accG:  0.3521
+Epoch: 01, cnt: 3, train_ds cst: 0.4599:, acc:  0.4817, cstG: 0.4476:, accG:  0.2861
+Epoch: 01, cnt: 4, train_ds cst: 0.4443:, acc:  0.4914, cstG: 0.4252:, accG:  0.1956
+Epoch: 01, cnt: 5, train_ds cst: 0.3892:, acc:  0.5403, cstG: 0.4063:, accG:  0.2494
+Epoch: 01, cnt: 6, train_ds cst: 0.3481:, acc:  0.5428, cstG: 0.3883:, accG:  0.2812
+Epoch: 01, cnt: 7, train_ds cst: 0.3508:, acc:  0.5477, cstG: 0.3708:, accG:  0.2836
+Epoch: 01, cnt: 8, train_ds cst: 0.3846:, acc:  0.5428, cstG: 0.3681:, accG:  0.2787
+Epoch: 01, cnt: 9, train_ds cst: 0.4129:, acc:  0.5306, cstG: 0.3718:, accG:  0.3178
+Epoch: 01, cnt: 10, train_ds cst: 0.3980:, acc:  0.5770, cstG: 0.3699:, accG:  0.3472
+Epoch: 01, cnt: 11, train_ds cst: 0.3625:, acc:  0.6112, cstG: 0.3724:, accG:  0.3399
+Epoch: 01, cnt: 12, train_ds cst: 0.3453:, acc:  0.6112, cstG: 0.3613:, accG:  0.3154
+---------------- Finished training ----------------
+FinalTrain:
+acc_train:  0.6112, acc_test:  0.6214
+accG_train:  0.3154, accG_test:  0.3010
+bestTrain:
+bestTrainAcc:  0.6112, bestTrainAccTest:  0.6214, at Epoch: 1, at Batch: 12
+bestTrainAccG:  0.4377, bestTrainAccGTest:  0.2913, at Epoch: 1 at Batch: 1
+
+Other Info:
+Ob1: 
+[[ 1  0  0 ...  0  0  0]
+ [ 0  1  0 ...  0  0  0]
+ [ 0  0  1 ...  0  0  0]
+ ...
+ [ 0  0  0 ... -1  0  0]
+ [ 0  0  0 ...  0 -1  0]
+ [ 0  0  0 ...  0  0 -1]]Ob2: 
+[[ 1  0  0 ...  0  0  0]
+ [ 0 -1  0 ...  0  0  0]
+ [ 0  0  1 ...  0  0  0]
+ ...
+ [ 0  0  0 ... -1  0  0]
+ [ 0  0  0 ...  0  1  0]
+ [ 0  0  0 ...  0  0 -1]]

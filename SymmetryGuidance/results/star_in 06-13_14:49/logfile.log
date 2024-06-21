@@ -1,0 +1,10 @@
+┌ Info: qubits number: 8
+│ layer number: 18
+│ samples number: 2048
+│ learning rate: 0.05
+│ epoch number: 64
+│ 
+│ run time: 66 minutes 
+│ accuracy: 0.5847750865051903
+│ guided accuracy: 0.7335640138408305
+└ @ Main /home/bkm/Projects/SymmetryGuidance/src/train/draw.jl:106

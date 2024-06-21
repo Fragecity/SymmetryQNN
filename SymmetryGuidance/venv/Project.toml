@@ -1,0 +1,7 @@
+[deps]
+CUDA = "052768ef-5323-5732-b1bb-66c8b64840ba"
+DrawFuncs = "bd166dc2-f80d-4379-b41d-39d8bd9f46e0"
+LoggingExtras = "e6f89c97-d47a-5376-807f-9c37f3926c36"
+Optimisers = "3bd65402-5787-11e9-1adc-39752487f4e2"
+VecOperations = "060f6137-6afa-481c-a470-bbe1dccde108"
+Yao = "5872b779-8223-5990-8dd0-5abbb0748c8c"

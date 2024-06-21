@@ -1,0 +1,8 @@
+
+┌ Info: The number of samples are 2048
+│ The range of data is [0, 1.0] 
+│ 
+│ The center of the circle is (0.5, 0.5)
+│ The radius is 0.4
+│ 
+└ @ Main /home/bkm/Projects/SymmetryGuidance/src/dataGenerate/DataGenerator.jl:33

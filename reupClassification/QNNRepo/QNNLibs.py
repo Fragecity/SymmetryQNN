@@ -33,8 +33,9 @@ class type2MC_multiEven(MidCircuit):
     def circuit(self, params):
         for i in range(self.num_blocks):
             cir1_multi(params[self.num_params_each_block * i:self.num_params_each_block * (i + 1)], self.num_qubits)
-            for j in range(self.num_qubits-1, 0, -1):
-                qml.CNOT(wires=[j, j-1])
+            parity = 1 if i % 2 == 1 else 0
+            for j in range(parity, self.num_qubits-1, 2):
+                qml.CNOT(wires=[j, j+1])
 
     @property
     def num_params(self):

@@ -64,37 +64,40 @@ def generate_circular_data(num_points_list, inner_radius=0.4, outer_radius=0.8, 
 def right_bottom_triangle(x, y):
     return y <= x
 
-# 生成数据
-num_points_list = [126, 377, 497]  # 每类数据点的数量，占比约12.57: 37.70: 49.73
-x, y, labels = generate_circular_data(num_points_list, filter_condition=right_bottom_triangle)
 
-# 保存数据到文件
-data = pd.DataFrame({'x': x, 'y': y, 'label': labels})
-data.to_csv('trainSet_reUp.csv', index=False)
+if __name__ == "__main__":
 
-# 绘制数据
-plt.figure(figsize=(6, 6))
-plt.scatter(x[labels == 0], y[labels == 0], c='purple', s=1, label='Class 1')
-plt.scatter(x[labels == 1], y[labels == 1], c='red', s=1, label='Class 2')
-plt.scatter(x[labels == 2], y[labels == 2], c='orange', s=1, label='Class 3')
+    # 生成数据
+    num_points_list = [126, 377, 497]  # 每类数据点的数量，占比约12.57: 37.70: 49.73
+    x, y, labels = generate_circular_data(num_points_list, filter_condition=right_bottom_triangle)
 
-# 画出两个圆
-circle1 = plt.Circle((0, 0), 0.4, color='black', fill=False)
-circle2 = plt.Circle((0, 0), 0.8, color='black', fill=False)
-plt.gca().add_patch(circle1)
-plt.gca().add_patch(circle2)
+    # 保存数据到文件
+    data = pd.DataFrame({'x': x, 'y': y, 'label': labels})
+    data.to_csv('./reupClassification/trainSet_reUp.csv', index=False)
 
-# 画出右下三角形区域
-plt.plot([-1, 1], [-1, 1], color='black', linewidth=1)
+    # 绘制数据
+    plt.figure(figsize=(6, 6))
+    plt.scatter(x[labels == 0], y[labels == 0], c='purple', s=1, label='Class 1')
+    plt.scatter(x[labels == 1], y[labels == 1], c='red', s=1, label='Class 2')
+    plt.scatter(x[labels == 2], y[labels == 2], c='orange', s=1, label='Class 3')
 
-plt.xlabel('x')
-plt.ylabel('y')
-plt.xlim(-1, 1)
-plt.ylim(-1, 1)
-plt.gca().set_aspect('equal', adjustable='box')
-plt.legend()
-plt.show()
+    # 画出两个圆
+    circle1 = plt.Circle((0, 0), 0.4, color='black', fill=False)
+    circle2 = plt.Circle((0, 0), 0.8, color='black', fill=False)
+    plt.gca().add_patch(circle1)
+    plt.gca().add_patch(circle2)
 
-class_counts = data['label'].value_counts()
-print("每一类的点的数量:")
-print(class_counts)
+    # 画出右下三角形区域
+    plt.plot([-1, 1], [-1, 1], color='black', linewidth=1)
+
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.xlim(-1, 1)
+    plt.ylim(-1, 1)
+    plt.gca().set_aspect('equal', adjustable='box')
+    plt.legend()
+    plt.show()
+
+    class_counts = data['label'].value_counts()
+    print("每一类的点的数量:")
+    print(class_counts)
